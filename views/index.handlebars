@@ -6,17 +6,17 @@
 		</div>
 		<div class="col-md-6 text-center" class="task">
 			<div class="row">
-			  {{#each burger_data}}
+			  {{#each burgers}}
 			  	{{#unless this.devoured}}
 				<div class="col-md-9 text-center">
-					<pre>{{this.id}}. {{this.burger_name}}
+					<pre>{{this.burger_name}}
 					</pre>
 				  		<!-- {{this.Date}} -->
 				</div>
 				<div class="col-md-3 text-center">
 					<form class="devour-form button-size">
-						<input input type="hidden" class="burger_id" type="text" value={{this.id}}><br>
-						<button type="submit" class="btn btn-default">Devour it!</button>
+						<input type="hidden" class="burger_id" type="text" value={{this.id}}><br>
+						<button class="devourBtn btn btn-default">Devour it!</button>
 					</form>
 				</div>
 				{{/unless}}
@@ -24,9 +24,9 @@
 			</div>
 		</div>
 		<div class="col-md-6 text-center" class="task">
-			  {{#each burger_data}}
+			  {{#each burgers}}
 			  	{{#if this.devoured}}
-			  		<input class="form-control" type="text" placeholder="{{this.id}} . {{this.burger_name}}" readonly>
+			  		<input class="form-control" type="text" placeholder="{{this.burger_name}}">
 				{{/if}}
 			  {{/each}}
 		</div>

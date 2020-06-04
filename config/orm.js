@@ -12,8 +12,8 @@ function printQuestionMarks(num) {
 //Genertes array of "Key=value"
 function createObjColVal(createObjColVal) {
     var arr = [];
-    for (var key in obj) {
-        arr.push(`${key}=${obj[key]}`)
+    for (var key in createObjColVal) {
+        arr.push(`${key}=${createObjColVal[key]}`)
     }
     return arr;
 }
@@ -21,6 +21,7 @@ function createObjColVal(createObjColVal) {
 var orm = {
     
     selectAll: function (tableInput,cb) {
+        // console.log("selectAll tableInput: " +tableInput)
         var queryString = `SELECT * FROM ${tableInput};`;
         connection.query(queryString, function(err,result) {
             if(err) {
@@ -31,7 +32,7 @@ var orm = {
     },
     createOne: function(table, cols, vals, cb) {
         var queryString = `INSERT INTO ${table} (${cols}) VALUES (${printQuestionMarks(vals.length)})`;
-        connection.query(queryString, function(err,result) {
+        connection.query(queryString, vals, function(err,result) {
             if(err) {
                 throw err;
             }
