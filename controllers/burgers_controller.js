@@ -9,21 +9,22 @@ router.get("/", function(req,res) {
 // Create all our routes and set up logic within those routes where required.
 router.get("/burger", function(req, res) {
     burger.all(function(burger_data) {
-     console.log(burger_data)
+    //  console.log(burger_data)
       var hbsObject = {
         burgers: burger_data
       };
-      console.log("hbs Object: "+hbsObject);
+      // console.log("hbs Object: "+hbsObject);
       res.render("index", hbsObject);
     });
   });
   
-  router.post("/burgers/create", function(req, res) {
-    burger.create(
-      req.body.burger_name,
+  router.post("/api/burgers", function(req, res) {
+    burger.create(["burger_name", "devoured"],
+      [req.body.burger_name, req.body.devoured],
      function(result) {
+       console.log("Post is being hit")
       console.log("id result.insertID: "+ result.insertId)
-      res.redirect("/");
+      res.json({id:result.insertId});
     });
   });
   
@@ -42,10 +43,10 @@ router.get("/burger", function(req, res) {
     });
   });
   
-  router.delete("/api/cats/:id", function(req, res) {
+  router.delete("/api/burgers/:id", function(req, res) {
     var condition = "id = " + req.params.id;
   
-    cat.delete(condition, function(result) {
+     burger.delete(condition, function(result) {
       if (result.affectedRows == 0) {
         // If no rows were changed, then the ID must not exist, so 404
         return res.status(404).end();

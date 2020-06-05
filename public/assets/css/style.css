@@ -1,7 +1,12 @@
+body{
+  background-color: aquamarine !important;
+}
+
 li {
   padding: 5px;
   margin: 5px;
-  background: #faebd7;
+  background: hsl(44, 83%, 73%);
+  font-weight: bold;
 }
 
 .label {
@@ -11,7 +16,7 @@ li {
 .create-update-form {
   padding: 5px;
   margin: 5px;
-  background: aqua;
+  background: rgb(250, 205, 83);
 }
 
 .form-group {
